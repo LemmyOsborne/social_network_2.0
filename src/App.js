@@ -3,11 +3,13 @@ import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {createTheme, Grid, ThemeProvider} from "@mui/material";
 import Profile from "./components/profile/Profile";
-import {Routes, Route} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchingMe} from "./store/authSlice";
 import {useEffect} from "react";
 import {Preloader} from "./components/common/Preloader";
+import {Dialogs} from "./components/Dialogs/Dialogs";
+import {News} from "./components/News/News";
 
 const theme = createTheme({
     palette: {
@@ -33,7 +35,7 @@ function App() {
 
     useEffect(() => {
         dispatch(fetchingMe())
-    })
+    },[])
 
     if (!isAuth) return <Preloader />
 
@@ -49,6 +51,8 @@ function App() {
                 <Grid item xs={10} sx={{bgcolor: "primary.main"}}>
                     <Routes>
                         <Route path="/profile" element={<Profile/>}/>
+                        <Route path="/dialogs" element={<Dialogs/>}/>
+                        <Route path="/news" element={<News/>}/>
                     </Routes>
                 </Grid>
             </Grid>
