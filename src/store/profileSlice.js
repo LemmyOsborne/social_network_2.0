@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const ProfileSlice = createSlice({
+const profileSlice = createSlice({
     name: "profile",
     initialState: {
         posts: [{text: "This is my second post!"}]
@@ -12,5 +12,5 @@ const ProfileSlice = createSlice({
     }
 })
 
-export const {addPost} = ProfileSlice.actions
-export default ProfileSlice.reducer
+export const {addPost} = profileSlice.actions
+export default profileSlice.reducer

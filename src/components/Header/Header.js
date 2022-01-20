@@ -1,6 +1,11 @@
 import {AppBar, Box, Button, Toolbar, Typography} from "@mui/material";
+import {useSelector} from "react-redux";
 
 export default function Header() {
+
+    const isAuth = useSelector(state => state.auth.isAuth)
+    const login = useSelector(state => state.auth.data.login)
+
     return (
         <Box>
             <AppBar position="static" sx={{ bgcolor: "info.main" }}>
@@ -8,7 +13,7 @@ export default function Header() {
                     <Typography sx={{ ml: 4 }}>
                         Social Network
                     </Typography>
-                    <Button sx={{ mr: 4 }} color="inherit">Login</Button>
+                    {isAuth && login || <Button sx={{ mr: 4 }} color="inherit">Login</Button>}
                 </Toolbar>
             </AppBar>
         </Box>
