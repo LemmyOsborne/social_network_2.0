@@ -1,25 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from "./components/header/Header";
+import Sidebar from "./components/Sidebar/Sidebar";
+import {createTheme, Grid, ThemeProvider} from "@mui/material";
+import Profile from "./components/profile/Profile";
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: "#FBF7F0",
+        },
+        secondary: {
+            main: "#D9E4DD",
+        },
+        info: {
+            main: "#555555",
+        }
+    },
+})
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <ThemeProvider theme={theme}>
+        <Grid container>
+            <Grid item xs={12}>
+            <Header/>
+            </Grid>
+            <Grid item xs={2} sx={{ bgcolor: "secondary.main" }}>
+            <Sidebar/>
+            </Grid>
+            <Grid item xs={10} sx={{ bgcolor: "primary.main" }}>
+                <Profile />
+            </Grid>
+        </Grid>
+        </ThemeProvider>
+    )
 }
 
 export default App;
