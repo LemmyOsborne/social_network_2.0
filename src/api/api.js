@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "3663864e92094d329a151c7a7e504e7a"
+// const API_KEY = "3663864e92094d329a151c7a7e504e7a"
 
 const instance = axios.create({
     withCredentials: true,
@@ -8,6 +8,9 @@ const instance = axios.create({
     headers: {
         "API-KEY": "f9f2b78b-33a5-4bb1-8984-36609ada0956"
     }
+})
+const axiosNews = axios.create({
+    baseURL: "https://api.spaceflightnewsapi.net/v3/"
 })
 
 export const authAPI = {
@@ -18,8 +21,10 @@ export const authAPI = {
 }
 
 export const newsAPI = {
-    async fetchingNews() {
-        debugger
-        return await axios.get(`https://newsapi.org/v2/everything?q=physics&from=2021-12-20&sortBy=publishedAt&pageSize=10&language=en&apiKey=`+ API_KEY)
+    async fetchingNews(searchTitle) {
+        return await axiosNews.get(`articles?title_contains=${searchTitle}`)
+    },
+    async fetchingDefaultNews() {
+        return await axiosNews.get(`articles`)
     }
 }
