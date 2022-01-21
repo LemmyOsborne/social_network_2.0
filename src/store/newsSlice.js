@@ -20,18 +20,30 @@ const newsSlice = createSlice({
     name: "news",
     initialState: {
         articles: [],
-        apiError: "",
+        apiError: false,
+        isFetching: false
     },
     reducers: {},
     extraReducers: {
+        [fetchingNews.pending]: (state) => {
+            state.isFetching = true
+        },
         [fetchingNews.fulfilled]: (state, action) => {
             state.articles = action.payload
+            state.isFetching = false
         },
         [fetchingNews.rejected]: (state, action) => {
-            state.apiError = action.error.message
+            state.apiError = true
+        },
+        [fetchingDefaultNews.pending]: (state) => {
+            state.isFetching = true
         },
         [fetchingDefaultNews.fulfilled]: (state, action) => {
             state.articles = action.payload
+            state.isFetching = false
+        },
+        [fetchingDefaultNews.rejected]: (state, action) => {
+            state.apiError = true
         },
     }
 })

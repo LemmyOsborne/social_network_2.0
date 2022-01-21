@@ -1,13 +1,14 @@
 import React from 'react';
 import {useFormik} from "formik";
-import {Box, Button, IconButton, InputBase, Paper, TextField} from "@mui/material";
+import {IconButton, InputBase, LinearProgress, Paper} from "@mui/material";
 import {fetchingNews} from "../../store/newsSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import SearchIcon from '@mui/icons-material/Search';
 
 function ArticleSearch() {
 
     const dispatch = useDispatch()
+    const isFetching = useSelector(state => state.news.isFetching)
 
     const formik = useFormik({
         initialValues: {
@@ -26,7 +27,7 @@ function ArticleSearch() {
                        value={formik.values.searchTitle}
                        placeholder="What news you prefer to see?"
                        sx={{ ml: 1, flex: 1 }}/>
-            <IconButton sx={{ p: '10px' }} aria-label="search" type="submit"><SearchIcon/></IconButton>
+            <IconButton disabled={isFetching} sx={{ p: '10px' }} aria-label="search" type="submit"><SearchIcon/></IconButton>
 
         </Paper>
     )

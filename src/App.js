@@ -10,23 +10,8 @@ import {useEffect} from "react";
 import {Preloader} from "./components/common/Preloader";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {News} from "./components/News/News";
+import {Login} from "./components/Login/Login";
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: "#FBF7F0",
-            contrastText: "#FBF7F0"
-        },
-        secondary: {
-            main: "#D9E4DD",
-            contrastText: "#555555"
-        },
-        info: {
-            main: "#555555",
-            contrastText: "#555555"
-        }
-    },
-})
 
 function App() {
 
@@ -35,28 +20,27 @@ function App() {
 
     useEffect(() => {
         dispatch(fetchingMe())
-    },[])
+    }, [])
 
-    if (!isAuth) return <Preloader />
+    if (!isAuth) return <Preloader/>
 
     return (
-        <ThemeProvider theme={theme}>
-            <Grid container>
-                <Grid item xs={12}>
-                    <Header/>
-                </Grid>
-                <Grid item xs={2} sx={{bgcolor: "secondary.main"}}>
-                    <Sidebar/>
-                </Grid>
-                <Grid item xs={10} sx={{bgcolor: "primary.main"}}>
-                    <Routes>
-                        <Route path="/profile" element={<Profile/>}/>
-                        <Route path="/dialogs" element={<Dialogs/>}/>
-                        <Route path="/news" element={<News/>}/>
-                    </Routes>
-                </Grid>
+        <Grid container>
+            <Grid item xs={12}>
+                <Header/>
             </Grid>
-        </ThemeProvider>
+            <Grid item xs={2} sx={{bgcolor: "grey.800"}}>
+                <Sidebar/>
+            </Grid>
+            <Grid item xs={10}>
+                <Routes>
+                    <Route path="/" element={<Login/>}/>
+                    <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/dialogs" element={<Dialogs/>}/>
+                    <Route path="/news" element={<News/>}/>
+                </Routes>
+            </Grid>
+        </Grid>
     )
 }
 
