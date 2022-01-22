@@ -16,8 +16,14 @@ const axiosNews = axios.create({
 export const authAPI = {
     async fetchingMe() {
         return await instance.get("auth/me")
-
+    },
+    async login(loginData) {
+        return await instance.post("auth/login", loginData)
+    },
+    async logout() {
+        return await instance.delete("auth/login")
     }
+
 }
 
 export const newsAPI = {

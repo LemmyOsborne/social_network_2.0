@@ -1,28 +1,29 @@
 import './App.css';
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
-import {createTheme, Grid, ThemeProvider} from "@mui/material";
+import {Grid} from "@mui/material";
 import Profile from "./components/profile/Profile";
-import {Route, Routes} from "react-router-dom";
+import {Route, Routes, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchingMe} from "./store/authSlice";
 import {useEffect} from "react";
-import {Preloader} from "./components/common/Preloader";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {News} from "./components/News/News";
 import {Login} from "./components/Login/Login";
+import Settings from "./components/Settings/Settings";
 
 
 function App() {
 
     const isAuth = useSelector(state => state.auth.isAuth)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(fetchingMe())
     }, [])
 
-    if (!isAuth) return <Preloader/>
+    if (!isAuth) return <Login/>
 
     return (
         <Grid container>
@@ -38,6 +39,8 @@ function App() {
                     <Route path="/profile" element={<Profile/>}/>
                     <Route path="/dialogs" element={<Dialogs/>}/>
                     <Route path="/news" element={<News/>}/>
+                    <Route path="/settings" element={<Settings/>}/>
+                    <Route path="/login" element={<Login/>}/>
                 </Routes>
             </Grid>
         </Grid>

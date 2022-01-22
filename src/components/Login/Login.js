@@ -1,8 +1,15 @@
 import * as yup from "yup";
-import {Field, useField, useFormik} from "formik";
-import {Box, Button, Checkbox, TextField} from "@mui/material";
+import {Field, Form, Formik} from "formik";
+import {Button, Checkbox, Container, FormControlLabel, TextField} from "@mui/material";
+import {login} from "../../store/authSlice";
+import {useDispatch, useSelector} from "react-redux";
+
 
 export const Login = () => {
+
+    const dispatch = useDispatch()
+    const isSubmiting = useSelector(state => state.auth.isSubmiting)
+
     const validationSchema = yup.object({
         email: yup
             .string('Enter your email')
@@ -14,44 +21,36 @@ export const Login = () => {
             .required('Password is required'),
     });
 
-    const formik = useFormik({
-        initialValues: {
-            email: '',
-            password: '',
-            rememberMe: false
-        },
-        validationSchema: validationSchema,
-        onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
-        },
-    });
-
-
     return (
-            <Box component="form" onSubmit={formik.handleSubmit}>
-                <TextField
-                    id="email"
-                    name="email"
-                    label="Email"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    error={formik.touched.email && Boolean(formik.errors.email)}
-                    helperText={formik.touched.email && formik.errors.email}
-                />
-                <TextField
-                    id="password"
-                    name="password"
-                    label="Password"
-                    type="password"
-                    value={formik.values.password}
-                    onChange={formik.handleChange}
-                    error={formik.touched.password && Boolean(formik.errors.password)}
-                    helperText={formik.touched.password && formik.errors.password}
-                />
-                <Checkbox  name="rememberMe"/>
-                <Button  variant="standard"  type="submit">
-                    Submit
-                </Button>
-            </Box>
+        <Formik
+            initialValues={{email: "", password: "", rememberMe: false}}
+            validationSchema={validationSchema}
+            onSubmit={(values => {
+                console.log(values)
+                dispatch(login(values))
+            })}>
+            <Form>
+                <Container sx={{
+                    bgcolor: "grey.200",
+                    width: "40%",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: 2, p: 2, m: "8rem auto"
+                }}>
+                    <Field as={TextField} label="Email" variant="standard" name="email" type="email"/>
+                    <Field as={TextField} label="Password" variant="standard" name="password" type="password"/>
+                    <Field as={FormControlLabel}
+                           name='remember'
+                           control={
+                               <Checkbox
+                                   color="primary"
+                               />
+                           }
+                           label="Remember me"
+                    />
+                    <Button sx={{width: "fit-content"}} variant="contained" type="submit">{isSubmiting ? "Loading..." : "Log In"}</Button>
+                </Container>
+            </Form>
+        </Formik>
     )
 }
