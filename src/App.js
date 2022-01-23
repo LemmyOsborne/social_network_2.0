@@ -15,16 +15,6 @@ import Settings from "./components/Settings/Settings";
 
 function App() {
 
-    const isAuth = useSelector(state => state.auth.isAuth)
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        dispatch(fetchingMe())
-    }, [])
-
-    if (!isAuth) return <Login/>
-
     return (
         <Grid container>
             <Grid item xs={12}>
@@ -35,7 +25,6 @@ function App() {
             </Grid>
             <Grid item xs={10}>
                 <Routes>
-                    <Route path="/" element={<Login/>}/>
                     <Route path="/profile" element={<Profile/>}/>
                     <Route path="/dialogs" element={<Dialogs/>}/>
                     <Route path="/news" element={<News/>}/>

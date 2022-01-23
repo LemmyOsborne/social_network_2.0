@@ -26,7 +26,6 @@ export const Login = () => {
             initialValues={{email: "", password: "", rememberMe: false}}
             validationSchema={validationSchema}
             onSubmit={(values => {
-                console.log(values)
                 dispatch(login(values))
             })}>
             <Form>
@@ -40,7 +39,7 @@ export const Login = () => {
                     <Field as={TextField} label="Email" variant="standard" name="email" type="email"/>
                     <Field as={TextField} label="Password" variant="standard" name="password" type="password"/>
                     <Field as={FormControlLabel}
-                           name='remember'
+                           name='rememberMe'
                            control={
                                <Checkbox
                                    color="primary"
@@ -48,7 +47,8 @@ export const Login = () => {
                            }
                            label="Remember me"
                     />
-                    <Button sx={{width: "fit-content"}} variant="contained" type="submit">{isSubmiting ? "Loading..." : "Log In"}</Button>
+                    <Button sx={{width: "fit-content"}} variant="contained"
+                            type="submit">{isSubmiting ? "Loading..." : "Log In"}</Button>
                 </Container>
             </Form>
         </Formik>

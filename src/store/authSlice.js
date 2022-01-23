@@ -1,23 +1,16 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {authAPI} from "../api/api";
 
-export const fetchingMe = createAsyncThunk(
-    "auth/fetchingMe",
-    async () => {
+export const login = createAsyncThunk(
+    "auth/login",
+    async (loginData) => {
+        await authAPI.login(loginData)
         const response = await authAPI.fetchingMe()
         return response.data
     }
 )
-
-export const login = createAsyncThunk(
-    "auth/login",
-    async (loginData) => {
-        const response = await authAPI.login(loginData)
-        return response.data
-    }
-)
 export const logout = createAsyncThunk(
-    "auth/login",
+    "auth/logout",
     async () => {
         const response = await authAPI.logout()
         return response.data
@@ -28,35 +21,31 @@ export const logout = createAsyncThunk(
 const authSlice = createSlice({
     name: "auth",
     initialState: {
-        data: {
+        data:{
             id: null,
             email: null,
-            login: null
+            login: null,
         },
         isAuth: false,
         isSubmiting: false
     },
     reducers: {},
-    extraReducers: {
-        [fetchingMe.fulfilled]: (state, action) => {
-            state.data = action.payload.data
-            state.isAuth = true
-        },
-        [login.pending]: (state) => {
-            state.isSubmiting = true
-        },
-        [login.fulfilled]: (state, action) => {
-            state.data = action.payload.data
-            state.isAuth = true
-            state.isSubmiting = false
-        },
-        [logout.fulfilled]: (state) => {
-            state.data = null
-            state.isAuth = false
-        }
+    extraReducers: builder => {
+        builder
+            .addCase(login.pending, (state) => {
+                state.isSubmiting = true
+            })
+            .addCase(login.fulfilled, (state, action) => {
+                state.data = action.payload.data
+                state.isAuth = true
+                state.isSubmiting = false
+            })
+            .addCase(logout.fulfilled, (state) => {
+                state.data = null
+                state.isAuth = false
+            })
     }
 })
-
 
 
 export default authSlice.reducer

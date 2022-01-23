@@ -9,7 +9,6 @@ export default function Header() {
 
     const navigate = useNavigate()
 
-
     return (
         <Box>
             <AppBar position="static" sx={{bgcolor: "info.main"}}>
@@ -18,8 +17,10 @@ export default function Header() {
                         Social Network
                     </Typography>
                     {isAuth
-                        ? <Button sx={{mr: 4}} color="inherit" onClick={() => navigate("/profile", {replace: true})}>{login}</Button>
-                        : <Button sx={{mr: 4}} color="inherit" onClick={() => navigate("/login", {replace: true})}>Login</Button>}
+                        ? <Button sx={{mr: 4}} color="inherit" onClick={() => navigate("/profile", {replace: true})}>{
+                            login}</Button>
+                        : <Button sx={{mr: 4}} color="inherit"
+                                  onClick={() => navigate("/login", {replace: true})}>Login</Button>}
                 </Toolbar>
             </AppBar>
         </Box>

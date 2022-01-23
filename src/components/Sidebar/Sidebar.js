@@ -1,7 +1,9 @@
 import {Box, Link} from "@mui/material";
 import {NavLink} from "react-router-dom";
+import "./Sidebar.css"
 
 const Sidebar = () => {
+
     return (
         <Box sx={{display: "grid", p: 7}}>
             <Link variant="h6" color="info.main" sx={{textDecoration: "none"}} component={NavLink} to="/profile">Profile</Link>
