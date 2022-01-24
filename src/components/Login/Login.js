@@ -3,12 +3,15 @@ import {Field, Form, Formik} from "formik";
 import {Button, Checkbox, Container, FormControlLabel, TextField} from "@mui/material";
 import {login} from "../../store/authSlice";
 import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom"
 
 
 export const Login = () => {
 
     const dispatch = useDispatch()
     const isSubmiting = useSelector(state => state.auth.isSubmiting)
+    const navigate = useNavigate()
+
 
     const validationSchema = yup.object({
         email: yup
@@ -27,6 +30,7 @@ export const Login = () => {
             validationSchema={validationSchema}
             onSubmit={(values => {
                 dispatch(login(values))
+                    .then(navigate("/profile"))
             })}>
             <Form>
                 <Container sx={{
@@ -48,7 +52,7 @@ export const Login = () => {
                            label="Remember me"
                     />
                     <Button sx={{width: "fit-content"}} variant="contained"
-                            type="submit">{isSubmiting ? "Loading..." : "Log In"}</Button>
+                            type="submit" disabled={isSubmiting}>{isSubmiting ? "Loading..." : "Log In"}</Button>
                 </Container>
             </Form>
         </Formik>

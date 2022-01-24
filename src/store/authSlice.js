@@ -27,7 +27,7 @@ const authSlice = createSlice({
             login: null,
         },
         isAuth: false,
-        isSubmiting: false
+        isSubmiting: false,
     },
     reducers: {},
     extraReducers: builder => {
@@ -41,7 +41,7 @@ const authSlice = createSlice({
                 state.isSubmiting = false
             })
             .addCase(logout.fulfilled, (state) => {
-                state.data = null
+                state.data = ''
                 state.isAuth = false
             })
     }

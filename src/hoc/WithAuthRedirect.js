@@ -3,7 +3,7 @@ import {Navigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 
 
-export const withAuthRedirect = ({children}) => {
+export const WithAuthRedirect = ({children}) => {
 
     const isAuth = useSelector(state => state.auth.isAuth)
 

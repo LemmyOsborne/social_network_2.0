@@ -26,6 +26,18 @@ export const authAPI = {
 
 }
 
+export const usersAPI = {
+    async fetchingUsers(page, search) {
+        return await instance.get(`users?count=10&page=${page}&term=${search}`)
+    },
+    async follow(userId) {
+        return await instance.post("follow/" + userId,{})
+    },
+    async unfollow(userId) {
+        return await instance.delete("follow/" + userId)
+    }
+}
+
 export const newsAPI = {
     async fetchingNews(searchTitle) {
         return await axiosNews.get(`articles?title_contains=${searchTitle}`)

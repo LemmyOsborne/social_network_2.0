@@ -1,16 +1,14 @@
 import './App.css';
-import Header from "./components/Header/Header";
+import {Header} from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import {Grid} from "@mui/material";
 import Profile from "./components/profile/Profile";
-import {Route, Routes, useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {fetchingMe} from "./store/authSlice";
-import {useEffect} from "react";
+import {Route, Routes} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {News} from "./components/News/News";
 import {Login} from "./components/Login/Login";
 import Settings from "./components/Settings/Settings";
+import Users from "./components/Users/Users";
 
 
 function App() {
@@ -29,6 +27,7 @@ function App() {
                     <Route path="/dialogs" element={<Dialogs/>}/>
                     <Route path="/news" element={<News/>}/>
                     <Route path="/settings" element={<Settings/>}/>
+                    <Route path="/users" element={<Users/>}/>
                     <Route path="/login" element={<Login/>}/>
                 </Routes>
             </Grid>

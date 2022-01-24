@@ -48,5 +48,5 @@ const newsSlice = createSlice({
     }
 })
 
-export const {findArticle} = newsSlice.actions
+
 export default newsSlice.reducer

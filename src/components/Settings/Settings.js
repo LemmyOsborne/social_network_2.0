@@ -2,19 +2,21 @@ import React from 'react';
 import {Box, Button, Paper} from "@mui/material";
 import {useDispatch} from "react-redux";
 import {logout} from "../../store/authSlice";
+import {useNavigate} from "react-router-dom"
 
 const Settings = () => {
 
+    const navigate = useNavigate()
     const dispatch = useDispatch()
-    const onSubmit = (e) =>{
-        e.preventDefault()
+    const onClick = () =>{
         dispatch(logout())
+        navigate("/login")
     }
 
     return (
-        <Box component="form" onSubmit={onSubmit} sx={{ position: "absolute", left: "50%", mt: 4 }}>
+        <Box sx={{ position: "absolute", left: "50%", mt: 4 }}>
             <Paper elevation={10} sx={{width: 200, height: 200, display: "flex", alignItems: "center", justifyContent: "center"}}>
-                <Button variant="contained" type="submit">Log Out</Button>
+                <Button variant="contained" type="submit" onClick={onClick}>Log Out</Button>
             </Paper>
         </Box>
     );

@@ -2,7 +2,7 @@ import {AppBar, Box, Button, Toolbar, Typography} from "@mui/material";
 import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom"
 
-export default function Header() {
+export function Header() {
 
     const isAuth = useSelector(state => state.auth.isAuth)
     const login = useSelector(state => state.auth.data.login)
