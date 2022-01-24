@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice, current} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {usersAPI} from "../api/api";
 
 export const fetchingUsers = createAsyncThunk(
