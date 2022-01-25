@@ -10,11 +10,28 @@ export const fetchingProfile = createAsyncThunk(
     }
 )
 
+export const fetchingStatus = createAsyncThunk(
+    "profile/fetchingStatus",
+    async (userId) => {
+        const response = await profileAPI.fetchingStatus(userId)
+        return response.data
+    }
+)
+export const updateStatus = createAsyncThunk(
+    "profile/updateStatus",
+    async (status) => {
+        const response = await profileAPI.updateStatus(status)
+        return response.data
+    }
+)
+
 const profileSlice = createSlice({
     name: "profile",
     initialState: {
         posts: [{id: 0, text: "This is my second post!"}],
-        profile: null
+        profile: {},
+        status: "",
+        isProfileFetched: false
     },
     reducers: {
         addPost(state, action) {
@@ -25,6 +42,13 @@ const profileSlice = createSlice({
         builder
             .addCase(fetchingProfile.fulfilled, (state, action) => {
                 state.profile = action.payload
+                state.isProfileFetched = true
+            })
+            .addCase(fetchingStatus.fulfilled, (state, action) => {
+                state.status = action.payload
+            })
+            .addCase(updateStatus.fulfilled, (state, action) => {
+                state.status = action.meta.arg
             })
     }
 })

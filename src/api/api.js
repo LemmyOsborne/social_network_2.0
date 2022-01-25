@@ -44,6 +44,9 @@ export const profileAPI = {
     },
     async fetchingStatus(userId) {
         return await instance.get("/profile/status/" + userId)
+    },
+    async updateStatus(status) {
+        return await instance.put("/profile/status", {status})
     }
 }
 
