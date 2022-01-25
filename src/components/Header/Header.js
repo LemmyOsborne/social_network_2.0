@@ -3,7 +3,6 @@ import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom"
 
 export function Header() {
-
     const isAuth = useSelector(state => state.auth.isAuth)
     const login = useSelector(state => state.auth.data.login)
 
@@ -17,10 +16,10 @@ export function Header() {
                         Social Network
                     </Typography>
                     {isAuth
-                        ? <Button sx={{mr: 4}} color="inherit" onClick={() => navigate("/profile", {replace: true})}>{
-                            login}</Button>
+                        ? <Button sx={{mr: 4}} color="inherit" onClick={() => navigate("/profile")}>
+                            {login}</Button>
                         : <Button sx={{mr: 4}} color="inherit"
-                                  onClick={() => navigate("/login", {replace: true})}>Login</Button>}
+                                  onClick={() => navigate("/login")}>Login</Button>}
                 </Toolbar>
             </AppBar>
         </Box>

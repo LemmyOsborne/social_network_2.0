@@ -8,10 +8,9 @@ import {Link, useLocation} from "react-router-dom";
 
 const Users = () => {
 
-    const location = useLocation()
     const totalPages = useSelector(state => state.users.totalPages)
     const numberPages = Math.ceil(totalPages / 10)
-    const [page, setPage] = useState(parseInt(location.search?.split("=")[1] || 1))
+    const [page, setPage] = useState(1)
     const [search, setSearch] = useState("")
 
     const dispatch = useDispatch()
@@ -27,7 +26,7 @@ const Users = () => {
         }
         setPageQuantity(numberPages)
 
-    }, [page, search])
+    }, [page, search, numberPages])
 
 
 

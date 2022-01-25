@@ -1,16 +1,15 @@
 import * as yup from "yup";
 import {Field, Form, Formik} from "formik";
 import {Button, Checkbox, Container, FormControlLabel, TextField} from "@mui/material";
-import {login} from "../../store/authSlice";
+import {fetchingMe, login} from "../../store/authSlice";
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom"
 
 
 export const Login = () => {
 
     const dispatch = useDispatch()
     const isSubmiting = useSelector(state => state.auth.isSubmiting)
-    const navigate = useNavigate()
+
 
 
     const validationSchema = yup.object({
@@ -28,10 +27,9 @@ export const Login = () => {
         <Formik
             initialValues={{email: "", password: "", rememberMe: false}}
             validationSchema={validationSchema}
-            onSubmit={(values => {
+            onSubmit={values => {
                 dispatch(login(values))
-                    .then(navigate("/profile"))
-            })}>
+            }}>
             <Form>
                 <Container sx={{
                     bgcolor: "grey.200",

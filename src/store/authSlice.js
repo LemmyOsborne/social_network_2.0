@@ -1,6 +1,14 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {authAPI} from "../api/api";
 
+export const fetchingMe = createAsyncThunk(
+    "auth/fetchingMe",
+    async () => {
+        const response = await authAPI.fetchingMe()
+        return response.data
+    }
+)
+
 export const login = createAsyncThunk(
     "auth/login",
     async (loginData) => {
@@ -32,6 +40,10 @@ const authSlice = createSlice({
     reducers: {},
     extraReducers: builder => {
         builder
+            .addCase(fetchingMe.fulfilled, (state, action) => {
+                state.isAuth = true
+                state.data = action.payload.data
+            })
             .addCase(login.pending, (state) => {
                 state.isSubmiting = true
             })
@@ -41,7 +53,6 @@ const authSlice = createSlice({
                 state.isSubmiting = false
             })
             .addCase(logout.fulfilled, (state) => {
-                state.data = ''
                 state.isAuth = false
             })
     }

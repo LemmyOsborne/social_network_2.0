@@ -1,12 +1,12 @@
 import axios from "axios";
 
-// const API_KEY = "3663864e92094d329a151c7a7e504e7a"
+const API_KEY = "f9f2b78b-33a5-4bb1-8984-36609ada0956"
 
 const instance = axios.create({
     withCredentials: true,
     baseURL: "https://social-network.samuraijs.com/api/1.0/",
     headers: {
-        "API-KEY": "f9f2b78b-33a5-4bb1-8984-36609ada0956"
+        "API-KEY": API_KEY
     }
 })
 const axiosNews = axios.create({
@@ -35,6 +35,15 @@ export const usersAPI = {
     },
     async unfollow(userId) {
         return await instance.delete("follow/" + userId)
+    }
+}
+
+export const profileAPI = {
+    async fetchingProfile(userId) {
+        return await instance.get("/profile/" + userId)
+    },
+    async fetchingStatus(userId) {
+        return await instance.get("/profile/status/" + userId)
     }
 }
 
