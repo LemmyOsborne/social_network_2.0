@@ -1,6 +1,6 @@
 import './App.css';
 import {Header} from "./components/Header/Header";
-import Sidebar from "./components/Sidebar/Sidebar";
+import {Sidebar} from "./components/Sidebar/Sidebar";
 import {Grid} from "@mui/material";
 import Profile from "./components/profile/Profile";
 import {Route, Routes, useNavigate} from "react-router-dom";
@@ -35,7 +35,7 @@ function App() {
             <Grid item xs={2} sx={{bgcolor: "grey.800"}}>
                 <Sidebar/>
             </Grid>
-            <Grid item xs={10}>
+            <Grid item xs={10} bgcolor="#FDFAF6">
                 <Routes>
                     <Route path="/profile" element={<Profile/>}/>
                     <Route path="/profile/:userId" element={<Profile/>}/>

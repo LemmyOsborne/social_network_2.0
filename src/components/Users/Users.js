@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {fetchingUsers} from "../../store/usersSlice";
 import {User} from "./User/User";
-import {Container, Pagination, PaginationItem, Stack, TextField} from "@mui/material";
+import {Container, InputBase, Pagination, PaginationItem, Paper, Stack, TextField} from "@mui/material";
 import {Link, useLocation} from "react-router-dom";
 
 
@@ -29,16 +29,17 @@ const Users = () => {
     }, [page, search, numberPages])
 
 
-
     return (
         <Container>
-            <TextField
-                fullWidth
-                label="Find friends"
-                value={search}
-                onChange={event => setSearch(event.target.value)}
-                sx={{ m: "3rem 0" }}
-            />
+            <Paper sx={{p: 1, mt: 4}}>
+                <InputBase
+                    fullWidth
+                    value={search}
+                    onChange={event => setSearch(event.target.value)}
+                    placeholder="Find friends"
+                />
+            </Paper>
+
             {!!pageQuantity && <Pagination
                 count={pageQuantity}
                 page={page}

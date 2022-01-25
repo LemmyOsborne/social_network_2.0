@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import "./Sidebar.css"
 import {useSelector} from "react-redux";
 
-const Sidebar = () => {
+export const Sidebar = () => {
 
     const {id} = useSelector(state => state.auth.data)
     return (
@@ -18,4 +18,3 @@ const Sidebar = () => {
     )
 }
 
-export default Sidebar
