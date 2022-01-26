@@ -4,10 +4,9 @@ import {useSelector} from "react-redux";
 
 
 export const WithAuthRedirect = ({children}) => {
+    const {isAuth} = useSelector(state => state.auth)
+    if (!isAuth) return <Navigate to="/login"/>
 
-    const isAuth = useSelector(state => state.auth.isAuth)
-
-    if (!isAuth) return <Navigate to="/login" />
     return children
 }
 

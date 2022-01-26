@@ -1,14 +1,17 @@
 import * as yup from "yup";
-import {Field, Form, Formik} from "formik";
+import {Field, Formik} from "formik";
 import {Box, Button, Checkbox, FormControlLabel, Paper, TextField, Typography} from "@mui/material";
 import {login} from "../../store/authSlice";
 import {useDispatch, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 
 export const Login = () => {
 
     const dispatch = useDispatch()
-    const isSubmiting = useSelector(state => state.auth.isSubmiting)
+    const {isSubmiting} = useSelector(state => state.auth)
+    const {id} = useSelector(state => state.auth.data)
+    const navigate = useNavigate()
 
     const validationSchema = yup.object({
         email: yup
@@ -27,8 +30,15 @@ export const Login = () => {
             validationSchema={validationSchema}
             onSubmit={values => {
                 dispatch(login(values))
+                    .then(() => {
+                        if (!isSubmiting) navigate("/profile/" + id)
+                    })
             }}>
-            <Box component="form" display="flex" flexDirection="column" alignItems="center">
+            {({ handleSubmit  }) => (
+            <Box component="form" display="flex" flexDirection="column" alignItems="center" onSubmit={(e) => {
+                e.preventDefault()
+                handleSubmit()
+            }}>
                 <Typography marginTop={4} variant="h3">Welcome to Social Network</Typography>
                 <Paper sx={{
                     width: "40%",
@@ -51,6 +61,7 @@ export const Login = () => {
                             type="submit" disabled={isSubmiting}>{isSubmiting ? "Loading..." : "Log In"}</Button>
                 </Paper>
             </Box>
+            )}
         </Formik>
     )
 }

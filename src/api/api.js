@@ -18,7 +18,7 @@ export const authAPI = {
         return await instance.get("auth/me")
     },
     async login(loginData) {
-        return await instance.post("auth/login", loginData)
+        return await instance.post("auth/login", {...loginData})
     },
     async logout() {
         return await instance.delete("auth/login")

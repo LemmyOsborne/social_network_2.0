@@ -12,8 +12,7 @@ export const fetchingMe = createAsyncThunk(
 export const login = createAsyncThunk(
     "auth/login",
     async (loginData) => {
-        await authAPI.login(loginData)
-        const response = await authAPI.fetchingMe()
+        const response = await authAPI.login(loginData)
         return response.data
     }
 )
@@ -36,23 +35,33 @@ const authSlice = createSlice({
         },
         isAuth: false,
         isSubmiting: false,
+        isAppInitialized: false
     },
     reducers: {},
     extraReducers: builder => {
         builder
             .addCase(fetchingMe.fulfilled, (state, action) => {
-                state.isAuth = true
-                state.data = action.payload.data
+                debugger
+                state.isAppInitialized = true
+                if (action.payload.resultCode === 0) {
+                    state.isAuth = true
+                    state.data = action.payload.data
+                }
             })
             .addCase(login.pending, (state) => {
                 state.isSubmiting = true
             })
             .addCase(login.fulfilled, (state, action) => {
-                state.data = action.payload.data
+                debugger
+                state.data.id = action.payload.data
                 state.isAuth = true
                 state.isSubmiting = false
             })
+            .addCase(logout.pending, (state) => {
+                state.isSubmiting = true
+            })
             .addCase(logout.fulfilled, (state) => {
+                state.isSubmiting = false
                 state.isAuth = false
             })
     }

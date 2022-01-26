@@ -2,15 +2,18 @@ import React from 'react';
 import {Box, Button, Paper, Typography} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {logout} from "../../store/authSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 export const Logout = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const {isSubmiting} = useSelector(state => state.auth)
     const onClick = () => {
         dispatch(logout())
-        navigate("/login")
+            .then(() => {
+                if (!isSubmiting) navigate("/login")
+            })
     }
 
     return (
@@ -25,7 +28,8 @@ export const Logout = () => {
                     justifyContent: "center"
                 }}>
                 <Typography variant="h6" sx={{mb: 3}}>Wanna log out?</Typography>
-                <Button variant="contained" type="submit" onClick={onClick}>Log Out</Button>
+                <Button variant="contained" type="submit" onClick={onClick}
+                        disabled={isSubmiting}>{isSubmiting ? "Loading..." : "Log Out"}</Button>
             </Paper>
         </Box>
     )

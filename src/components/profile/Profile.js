@@ -5,9 +5,9 @@ import {Box} from "@mui/material";
 const Profile = () => {
     return (
         <>
-            <Box sx={{backgroundColor: "gray", height: 300}}/>
+            <Box sx={{backgroundColor: "gray", height: 200}}/>
             <ProfileInfo/>
-            <Box sx={{ pt: 15 }}>
+            <Box sx={{ pt: 15, mt: 8 }}>
                 <Posts/>
             </Box>
         </>
