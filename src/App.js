@@ -7,7 +7,7 @@ import {Route, Routes, useNavigate} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {News} from "./components/News/News";
 import {Login} from "./components/Login/Login";
-import Settings from "./components/Settings/Settings";
+import {Settings} from "./components/Settings/Settings";
 import Users from "./components/Users/Users";
 import {useEffect} from "react";
 import {fetchingMe} from "./store/authSlice";

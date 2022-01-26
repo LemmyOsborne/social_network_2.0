@@ -6,7 +6,6 @@ import {updateStatus} from "../../../store/profileSlice";
 export const ProfileStatus = ({status}) => {
     const [editMode, setEditMode] = useState(false)
     const [inputStatus, setStatus] = useState(status)
-    console.log(status)
 
     const dispatch = useDispatch()
     useEffect(() => {

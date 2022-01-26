@@ -25,6 +25,15 @@ export const updateStatus = createAsyncThunk(
     }
 )
 
+export const updateProfileInfo = createAsyncThunk(
+    "profile/updateProfileInfo",
+    async (profileData) => {
+        debugger
+        const response = await profileAPI.updateProfileInfo(profileData)
+        return response.data
+    }
+)
+
 const profileSlice = createSlice({
     name: "profile",
     initialState: {
