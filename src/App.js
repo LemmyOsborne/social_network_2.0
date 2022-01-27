@@ -3,13 +3,13 @@ import {Header} from "./components/Header/Header";
 import {Sidebar} from "./components/Sidebar/Sidebar";
 import {Grid} from "@mui/material";
 import Profile from "./components/profile/Profile";
-import {Route, Routes, useNavigate, Navigate} from "react-router-dom";
+import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {News} from "./components/News/News";
 import {Login} from "./components/Login/Login";
 import {Settings} from "./components/Settings/Settings";
 import Users from "./components/Users/Users";
-import {useEffect} from "react";
+import {useLayoutEffect} from "react";
 import {fetchingMe} from "./store/authSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {Preloader} from "./components/common/Preloader";
@@ -20,8 +20,8 @@ function App() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {isAppInitialized, isAuth} = useSelector(state => state.auth)
-    useEffect(() => {
+    let {isAppInitialized, isAuth} = useSelector(state => state.auth)
+    useLayoutEffect(() => {
         dispatch(fetchingMe())
         if (!isAuth) navigate("/login")
     }, [isAuth])

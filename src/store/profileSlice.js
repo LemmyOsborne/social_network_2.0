@@ -28,8 +28,15 @@ export const updateStatus = createAsyncThunk(
 export const updateProfileInfo = createAsyncThunk(
     "profile/updateProfileInfo",
     async (profileData) => {
-        debugger
         const response = await profileAPI.updateProfileInfo(profileData)
+        return response.data
+    }
+)
+
+export const updateProfilePhoto = createAsyncThunk(
+    "profile/updateProfilePhoto",
+    async (profilePhoto) => {
+        const response = await profileAPI.updateProfilePhoto(profilePhoto)
         return response.data
     }
 )
@@ -58,6 +65,10 @@ const profileSlice = createSlice({
             })
             .addCase(updateStatus.fulfilled, (state, action) => {
                 state.status = action.meta.arg
+            })
+            .addCase(updateProfilePhoto.fulfilled, (state, action) => {
+                debugger
+                state.profile.photos = action.payload.data.photos
             })
     }
 })

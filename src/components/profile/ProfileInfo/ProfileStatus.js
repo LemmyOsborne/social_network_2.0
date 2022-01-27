@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Box, TextField, Typography} from "@mui/material";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {updateStatus} from "../../../store/profileSlice";
+import {useParams} from "react-router-dom";
 
 export const ProfileStatus = ({status}) => {
     const [editMode, setEditMode] = useState(false)
     const [inputStatus, setStatus] = useState(status)
-
+    const myId = useSelector(state => state.auth.data.id)
+    const {userId} = useParams()
     const dispatch = useDispatch()
     useEffect(() => {
         setStatus(status)
@@ -27,16 +29,19 @@ export const ProfileStatus = ({status}) => {
 
     return (
         <Box>
-            {!editMode ?
-                <Typography onClick={activateEditMode}>{status || "Edit your status"}</Typography>
+
+            {myId !== parseInt(userId)
+                ? <Typography>{status || "---"}</Typography>
+                : !editMode
+                ? <Typography onClick={activateEditMode}>{status || "---"}</Typography>
                 :
                 <Box>
-                    <TextField
-                        onBlur={deactivateEditMode}
-                        onChange={onStatusChange}
-                        autoFocus={true}
-                        value={inputStatus}
-                    />
+                <TextField
+                onBlur={deactivateEditMode}
+                onChange={onStatusChange}
+                autoFocus={true}
+                value={inputStatus}
+                />
                 </Box>
             }
         </Box>

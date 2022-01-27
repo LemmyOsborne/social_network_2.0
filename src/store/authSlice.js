@@ -41,7 +41,6 @@ const authSlice = createSlice({
     extraReducers: builder => {
         builder
             .addCase(fetchingMe.fulfilled, (state, action) => {
-                debugger
                 state.isAppInitialized = true
                 if (action.payload.resultCode === 0) {
                     state.isAuth = true
@@ -52,7 +51,6 @@ const authSlice = createSlice({
                 state.isSubmiting = true
             })
             .addCase(login.fulfilled, (state, action) => {
-                debugger
                 state.data.id = action.payload.data
                 state.isAuth = true
                 state.isSubmiting = false

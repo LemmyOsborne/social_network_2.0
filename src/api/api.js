@@ -50,14 +50,19 @@ export const profileAPI = {
     },
     async updateProfileInfo(profileData) {
         return await instance.put("/profile", {...profileData})
+    },
+    async updateProfilePhoto(photo) {
+        const formData = new FormData()
+        formData.append("image", photo)
+        return await instance.put("/profile/photo", formData)
     }
 }
 
 export const newsAPI = {
     async fetchingNews(searchTitle) {
-        return await axiosNews.get(`articles?title_contains=${searchTitle}`)
+        return await axiosNews.get(`articles?_limit=10&title_contains=${searchTitle}`)
     },
     async fetchingDefaultNews() {
-        return await axiosNews.get(`articles`)
+        return await axiosNews.get(`articles?_limit=10`)
     }
 }
