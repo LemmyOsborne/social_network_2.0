@@ -58,7 +58,7 @@ export const Login = () => {
                            label="Remember me"
                     />
                     <Button sx={{width: "fit-content"}} variant="contained"
-                            type="submit" disabled={isSubmiting}>{isSubmiting ? "Loading..." : "Log In"}</Button>
+                            type="submit" disabled={isSubmiting}>{isSubmiting ? "Submiting..." : "Log In"}</Button>
                 </Paper>
             </Box>
             )}

@@ -11,7 +11,6 @@ export const Sidebar = () => {
             <Link variant="h6" color="info.main" sx={{textDecoration: "none"}} component={NavLink} to={"/profile/" + id}>Profile</Link>
             <Link variant="h6" color="info.main" sx={{textDecoration: "none"}} component={NavLink} to="/dialogs">Dialogs</Link>
             <Link variant="h6" color="info.main" sx={{textDecoration: "none"}} component={NavLink} to="/news">News</Link>
-            <Link variant="h6" color="info.main" sx={{textDecoration: "none"}} component={NavLink} to="/music">Music</Link>
             <Link variant="h6" color="info.main" sx={{textDecoration: "none"}} component={NavLink} to="/users">Users</Link>
             <Link variant="h6" color="info.main" sx={{textDecoration: "none"}} component={NavLink} to="/settings">Settings</Link>
         </Box>
