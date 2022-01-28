@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Preloader } from "./components/common/Preloader";
 import { WithAuthRedirect } from "./hoc/WithAuthRedirect";
 import { NotFound } from './components/NotFound/NotFound';
+import { Layout } from './components/Layout/Layout';
 
 
 
@@ -33,38 +34,31 @@ function App() {
     if (!isAppInitialized) return <Preloader />
 
     return (
-        <Grid container>
-            <Grid item xs={12}>
-                <Header />
-            </Grid>
-            <Grid item xs={2} sx={{ bgcolor: "grey.800" }}>
-                <Sidebar />
-            </Grid>
-            <Grid item xs={10} bgcolor="#FDFAF6">
-                <Routes>
-                    <Route path="/profile" element={<Navigate to={"/profile/" + id} />} />
-                    <Route path="/profile/:userId" element={
-                        <WithAuthRedirect>
-                            <Profile />
-                        </WithAuthRedirect>
-                    } />
-                    <Route path="/dialogs" element={
-                        <WithAuthRedirect>
-                            <Dialogs />
-                        </WithAuthRedirect>
-                    } />
-                    <Route path="/news" element={<News />} />
-                    <Route path="/settings" element={
-                        <WithAuthRedirect>
-                            <Settings />
-                        </WithAuthRedirect>
-                    } />
-                    <Route path="/users" element={<Users />} />
-                    <Route path="/login" element={<Login />} />
-                </Routes>
-            </Grid>
-            
-        </Grid>
+        <Routes>
+            <Route path="/" element={<Layout />} >
+                <Route index element={<Navigate to={"/profile/" + id} />} />
+                <Route path="/profile" element={<Navigate to={"/profile/" + id} />} />
+                <Route path="/profile/:userId" element={
+                    <WithAuthRedirect>
+                        <Profile />
+                    </WithAuthRedirect>
+                } />
+                <Route path="/dialogs" element={
+                    <WithAuthRedirect>
+                        <Dialogs />
+                    </WithAuthRedirect>
+                } />
+                <Route path="/news" element={<News />} />
+                <Route path="/settings" element={
+                    <WithAuthRedirect>
+                        <Settings />
+                    </WithAuthRedirect>
+                } />
+                <Route path="/users" element={<Users />} />
+                <Route path="/login" element={<Login />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+        </Routes>
     )
 }
 
