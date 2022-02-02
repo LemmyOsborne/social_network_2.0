@@ -1,7 +1,4 @@
 import './App.css';
-import { Header } from "./components/Header/Header";
-import { Sidebar } from "./components/Sidebar/Sidebar";
-import { Grid } from "@mui/material";
 import Profile from "./components/profile/Profile";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { Dialogs } from "./components/Dialogs/Dialogs";

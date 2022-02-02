@@ -29,7 +29,6 @@ export const ProfileStatus = ({status}) => {
 
     return (
         <Box>
-
             {myId !== parseInt(userId)
                 ? <Typography>{status || "---"}</Typography>
                 : !editMode

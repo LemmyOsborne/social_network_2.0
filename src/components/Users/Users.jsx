@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {fetchingUsers} from "../../store/usersSlice";
 import {User} from "./User/User";
-import {Container, InputBase, Pagination, PaginationItem, Paper, Stack, TextField} from "@mui/material";
-import {Link, useLocation} from "react-router-dom";
+import {Container, InputBase, Pagination, PaginationItem, Paper, Stack} from "@mui/material";
+import {Link} from "react-router-dom";
 
 
 const Users = () => {
@@ -49,7 +49,7 @@ const Users = () => {
                     (item) => (
                         <PaginationItem
                             component={Link}
-                            to={`/users?page=${page}`}
+                            to={`/users?page=${item.page}`}
                             {...item}
                         />
                     )

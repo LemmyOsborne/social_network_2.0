@@ -20,7 +20,7 @@ const User = ({name, status, id, followed, photos: {small}}) => {
             </Grid>
             <Grid item xs={4}>
                 <Typography>
-                    {status}
+                    {`Status: ${status || ""}`}
                 </Typography>
             </Grid>
             <Grid item xs={4}>

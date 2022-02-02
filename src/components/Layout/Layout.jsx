@@ -11,7 +11,7 @@ export const Layout = () => {
             <Grid item xs={12}>
                 <Header />
             </Grid>
-            <Grid item xs={2} sx={{ bgcolor: "grey.800" }}>
+            <Grid item xs={2} bgcolor="grey.800">
                 <Sidebar />
             </Grid>
             <Grid item xs={10} bgcolor="#FDFAF6">
