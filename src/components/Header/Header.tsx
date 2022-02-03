@@ -1,10 +1,12 @@
-import {AppBar, Box, Button, Toolbar, Typography} from "@mui/material";
-import {useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom"
+import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material"
+import { useAppSelector } from "../../store/hooks"
+import { useNavigate } from "react-router-dom"
+import React from "react"
 
-export function Header() {
-    const isAuth = useSelector(state => state.auth.isAuth)
-    const login = useSelector(state => state.auth.data.login)
+
+export const Header = () => {
+    const isAuth = useAppSelector(state => state.auth.isAuth)
+    const login = useAppSelector(state => state.auth.data.login)
 
     const navigate = useNavigate()
 

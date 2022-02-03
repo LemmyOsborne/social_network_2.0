@@ -1,14 +1,15 @@
-import React from 'react';
-import {Box, Button, Paper, Typography} from "@mui/material";
-import {useNavigate} from "react-router-dom";
-import {logout} from "../../store/authSlice";
-import {useDispatch, useSelector} from "react-redux";
+import React from "react"
+import { Box, Button, Paper, Typography } from "@mui/material"
+import { useNavigate } from "react-router-dom"
+import { logout } from "../../store/authSlice"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
+
 
 export const Logout = () => {
 
     const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const {isSubmiting} = useSelector(state => state.auth)
+    const dispatch = useAppDispatch()
+    const {isSubmiting} = useAppSelector(state => state.auth)
     const onClick = () => {
         dispatch(logout())
             .then(() => {

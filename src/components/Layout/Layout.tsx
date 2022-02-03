@@ -1,8 +1,8 @@
-import React from 'react';
-import { Header } from "../Header/Header";
-import { Sidebar } from "../Sidebar/Sidebar";
-import { Grid } from "@mui/material";
-import { Outlet } from 'react-router-dom';
+import React from "react"
+import { Header } from "../Header/Header"
+import { Sidebar } from "../Sidebar/Sidebar"
+import { Grid } from "@mui/material"
+import { Outlet } from 'react-router-dom'
 
 
 export const Layout = () => {

@@ -1,7 +1,14 @@
-import React from 'react';
-import {Box, Container, Link, Typography} from "@mui/material";
+import React from "react"
+import { Box, Container, Link, Typography } from "@mui/material"
+import { ArticleType } from "../../store/newsSlice";
 
-function Article({article}) {
+
+type Props = {
+    article: ArticleType
+}
+
+
+export const Article = ({ article }: Props) => {
     return (
         <Container sx={{mt: 6, display: "flex", alignItems: 'flex-start', justifyContent: "space-around"}}>
             <Box>
@@ -19,4 +26,3 @@ function Article({article}) {
     );
 }
 
-export default Article;

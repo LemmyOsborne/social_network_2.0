@@ -1,23 +1,24 @@
-import React from 'react';
-import {updateProfileInfo} from "../../store/profileSlice";
-import {Field, Form, Formik} from "formik";
-import {Button, Checkbox, Container, FormControlLabel, Paper, TextField} from "@mui/material";
-import * as yup from "yup";
-import {useDispatch, useSelector} from "react-redux";
+import React from "react"
+import { updateProfileInfo } from "../../store/profileSlice"
+import { Field, Form, Formik } from "formik"
+import { Button, Checkbox, Container, FormControlLabel, Paper, TextField } from "@mui/material"
+import * as yup from "yup"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
+
+
 
 export const ProfileSettings = () => {
 
 
-    const dispatch = useDispatch()
-    const authUserId = useSelector(state => state.auth.id)
+    const dispatch = useAppDispatch()
+    const authUserId = useAppSelector(state => state.auth.data.id)
 
     const validationSchema = yup.object({
         fullName: yup
-            .string('Enter your name')
-            .min(4, 'Name should be of minimum 4 characters length')
+            .string()
             .required('Name is required'),
         aboutMe: yup
-            .string('Enter description of yourself')
+            .string()
             .required('Describe yourself please'),
 
     })
@@ -42,7 +43,7 @@ export const ProfileSettings = () => {
                 }
             }}
             validationSchema={validationSchema}
-            onSubmit={(values, {resetForm}) => {
+            onSubmit={(values: object, {resetForm}) => {
                 dispatch(updateProfileInfo(values))
                 resetForm()
             }}>

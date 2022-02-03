@@ -1,20 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {fetchingUsers} from "../../store/usersSlice";
-import {User} from "./User/User";
-import {Container, InputBase, Pagination, PaginationItem, Paper, Stack} from "@mui/material";
-import {Link} from "react-router-dom";
+import React, { useEffect, useState } from "react"
+import { fetchingUsers } from "../../store/usersSlice"
+import { User } from "./User/User"
+import { Container, InputBase, Pagination, PaginationItem, Paper, Stack } from "@mui/material"
+import { Link } from "react-router-dom"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
 
 
 const Users = () => {
 
-    const totalPages = useSelector(state => state.users.totalPages)
+    const { totalPages } = useAppSelector(state => state.users)
     const numberPages = Math.ceil(totalPages / 10)
     const [page, setPage] = useState(1)
     const [search, setSearch] = useState("")
 
-    const dispatch = useDispatch()
-    const users = useSelector(state => state.users.users)
+    const dispatch = useAppDispatch()
+    const users = useAppSelector(state => state.users.users)
     const usersItems = users.map(user => <User key={user.id} {...user}/>)
     const [pageQuantity, setPageQuantity] = useState(0)
 

@@ -1,17 +1,16 @@
-import {Box, Container, Typography} from "@mui/material";
-import {fetchingDefaultNews} from "../../store/newsSlice";
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import Article from "./Article";
-import ArticleSearch from "./ArticleSearch";
+import { Box, Container, Typography } from "@mui/material"
+import { fetchingDefaultNews } from "../../store/newsSlice"
+import React, { useEffect } from "react"
+import { Article } from "./Article"
+import { ArticleSearch } from "./ArticleSearch"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
 
 export const News = () => {
 
-    const articles = useSelector(state => state.news.articles)
-    const apiError = useSelector(state => state.news.apiError)
+    const { articles, apiError } = useAppSelector(state => state.news)
     const articlesItems = articles.map((article, index) => <Article key={index} article={article}/>)
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     useEffect(() => {
         dispatch(fetchingDefaultNews())
     }, [])

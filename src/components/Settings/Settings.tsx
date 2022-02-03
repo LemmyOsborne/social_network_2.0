@@ -1,7 +1,7 @@
-import React from 'react';
-import {ProfileSettings} from "./ProfileSettings";
-import {Logout} from "./Logout";
-import {Box, Typography} from "@mui/material";
+import React from "react"
+import { ProfileSettings } from "./ProfileSettings"
+import { Logout } from "./Logout"
+import { Box, Typography } from "@mui/material"
 
 
 export const Settings = () => {

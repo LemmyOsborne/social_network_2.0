@@ -1,17 +1,21 @@
-import {configureStore} from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit"
 import profileReducer from "./profileSlice"
 import authReducer from "./authSlice"
-import dialogsReducer from "./dialogsSlice"
 import newsReducer from "./newsSlice"
 import usersReducer from "./usersSlice"
 
 
-export default configureStore({
+const store = configureStore({
     reducer: {
         profile: profileReducer,
         auth: authReducer,
-        dialogs: dialogsReducer,
         news: newsReducer,
         users: usersReducer
     }
 })
+
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+
+export default store
+

@@ -1,8 +1,9 @@
-import { Box, Container, Typography, Divider, Button } from '@mui/material';
-import React from 'react';
-import { Link } from 'react-router-dom';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import image from '../../assets/404_page_bg_image.jpg';
+import { Box, Container, Typography, Divider, Button } from "@mui/material"
+import React from "react"
+import { Link } from "react-router-dom"
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos"
+// @ts-ignore
+import image from "../../assets/404_page_bg_image.jpg"
 
 
 export const NotFound = () => {

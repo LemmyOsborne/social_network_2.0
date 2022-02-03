@@ -1,22 +1,21 @@
-import React from "react";
-import { Box, CircularProgress, Typography} from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchingProfile, fetchingStatus, updateProfilePhoto } from "../../../store/profileSlice";
-import { useParams } from "react-router-dom";
-import { ProfileStatus } from "./ProfileStatus";
-import { ProfilePhoto } from './ProfilePhoto';
-
+import React from "react"
+import { Box, CircularProgress, Typography } from "@mui/material"
+import { useEffect } from "react"
+import { fetchingProfile, fetchingStatus } from "../../../store/profileSlice"
+import { useParams } from "react-router-dom"
+import { ProfileStatus } from "./ProfileStatus"
+import { ProfilePhoto } from './ProfilePhoto'
+import { useAppDispatch, useAppSelector } from "../../../store/hooks"
 
 
 
 
 export const ProfileInfo = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const { userId } = useParams()
-    const myId = useSelector(state => state.auth.data.id)
-    const { isProfileFetched, profile, status } = useSelector(state => state.profile)
+    const myId = useAppSelector(state => state.auth.data.id)
+    const { isProfileFetched, profile, status } = useAppSelector(state => state.profile)
     useEffect(() => {
         dispatch(fetchingProfile((userId || myId)))
         dispatch(fetchingStatus((userId || myId)))

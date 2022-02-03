@@ -17,7 +17,7 @@ export const authAPI = {
     async fetchingMe() {
         return await instance.get("auth/me")
     },
-    async login(loginData) {
+    async login(loginData: any) {
         return await instance.post("auth/login", {...loginData})
     },
     async logout() {
@@ -27,31 +27,31 @@ export const authAPI = {
 }
 
 export const usersAPI = {
-    async fetchingUsers(page, search) {
+    async fetchingUsers(page: number, search: string) {
         return await instance.get(`users?count=10&page=${page}&term=${search}`)
     },
-    async follow(userId) {
-        return await instance.post("follow/" + userId,{})
+    async follow(userId: number) {
+        return await instance.post("follow/" + userId)
     },
-    async unfollow(userId) {
+    async unfollow(userId: number) {
         return await instance.delete("follow/" + userId)
     }
 }
 
 export const profileAPI = {
-    async fetchingProfile(userId) {
+    async fetchingProfile(userId: any) {
         return await instance.get("/profile/" + userId)
     },
-    async fetchingStatus(userId) {
+    async fetchingStatus(userId: any) {
         return await instance.get("/profile/status/" + userId)
     },
-    async updateStatus(status) {
+    async updateStatus(status: string) {
         return await instance.put("/profile/status", {status})
     },
-    async updateProfileInfo(profileData) {
+    async updateProfileInfo(profileData: any) {
         return await instance.put("/profile", {...profileData})
     },
-    async updateProfilePhoto(photo) {
+    async updateProfilePhoto(photo: string | Blob) {
         const formData = new FormData()
         formData.append("image", photo)
         return await instance.put("/profile/photo", formData)
@@ -59,7 +59,7 @@ export const profileAPI = {
 }
 
 export const newsAPI = {
-    async fetchingNews(searchTitle) {
+    async fetchingNews(searchTitle: string) {
         return await axiosNews.get(`articles?_limit=10&title_contains=${searchTitle}`)
     },
     async fetchingDefaultNews() {

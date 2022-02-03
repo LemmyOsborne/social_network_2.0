@@ -1,15 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import {Box, TextField, Typography} from "@mui/material";
-import {useDispatch, useSelector} from "react-redux";
-import {updateStatus} from "../../../store/profileSlice";
-import {useParams} from "react-router-dom";
+import React, { ChangeEvent, useEffect, useState } from "react"
+import { Box, TextField, Typography } from "@mui/material"
+import { updateStatus } from "../../../store/profileSlice"
+import { useAppDispatch, useAppSelector } from "../../../store/hooks"
 
-export const ProfileStatus = ({status}) => {
+
+type Props = {
+    status: string
+    userId: any
+}
+
+
+export const ProfileStatus = ({status, userId}: Props) => {
     const [editMode, setEditMode] = useState(false)
     const [inputStatus, setStatus] = useState(status)
-    const myId = useSelector(state => state.auth.data.id)
-    const {userId} = useParams()
-    const dispatch = useDispatch()
+    const myId = useAppSelector(state => state.auth.data.id)
+    const dispatch = useAppDispatch()
     useEffect(() => {
         setStatus(status)
     }, [status])
@@ -23,8 +28,8 @@ export const ProfileStatus = ({status}) => {
         dispatch(updateStatus(inputStatus))
     }
 
-    const onStatusChange = (e) => {
-        setStatus(e.target.value)
+    const onStatusChange = (e: ChangeEvent<HTMLInputElement>): void => {
+        setStatus(e.currentTarget.value)
     }
 
     return (

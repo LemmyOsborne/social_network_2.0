@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
-import { Fade, Box, Button, alpha } from "@mui/material";
-import user from "../../../assets/user.png";
-import { updateProfilePhoto } from "../../../store/profileSlice";
+import React, { FormEventHandler, useState } from "react"
+import { Fade, Box, Button, alpha } from "@mui/material"
+// @ts-ignore
+import user from "../../../assets/user.png"
+import { Profile, updateProfilePhoto } from "../../../store/profileSlice"
+import { AppDispatch } from "../../../store/store"
 
 
-export const ProfilePhoto = ({ profile, dispatch }) => {
+type Props = {
+    profile: Profile
+    dispatch: AppDispatch
+}
+
+export const ProfilePhoto = ({ profile, dispatch }: Props) => {
     
     const [checked, setChecked] = useState(false)
 
@@ -12,7 +19,7 @@ export const ProfilePhoto = ({ profile, dispatch }) => {
         setChecked((prev) => !prev)
     }
 
-    const onPhotoSelected = (e) => {
+    const onPhotoSelected = (e: any) => {
         dispatch(updateProfilePhoto(e.target.files[0]))
     }
     return (

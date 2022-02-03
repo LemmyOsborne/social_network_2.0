@@ -1,12 +1,15 @@
-import {Button, Paper, TextField} from "@mui/material";
-import {useFormik} from "formik";
-import {addPost} from "../../../store/profileSlice";
-import {useDispatch} from "react-redux";
-import CreateIcon from '@mui/icons-material/Create';
+import React from "react"
+import { Button, Paper, TextField } from "@mui/material"
+import { useFormik } from "formik"
+import { addPost } from "../../../store/profileSlice"
+import CreateIcon from "@mui/icons-material/Create"
+import { useAppDispatch } from "../../../store/hooks"
+
+
 
 export const PostsForm = () => {
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
     const formik = useFormik({
         initialValues: {

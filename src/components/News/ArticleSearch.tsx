@@ -1,14 +1,16 @@
-import React from 'react';
-import {useFormik} from "formik";
-import {IconButton, InputBase, LinearProgress, Paper} from "@mui/material";
-import {fetchingNews} from "../../store/newsSlice";
-import {useDispatch, useSelector} from "react-redux";
-import SearchIcon from '@mui/icons-material/Search';
+import React from "react"
+import { useFormik } from "formik"
+import { IconButton, InputBase, Paper } from "@mui/material"
+import { fetchingNews } from "../../store/newsSlice"
+import SearchIcon from "@mui/icons-material/Search"
+import { useAppDispatch, useAppSelector } from "../../store/hooks"
 
-function ArticleSearch() {
 
-    const dispatch = useDispatch()
-    const isFetching = useSelector(state => state.news.isFetching)
+
+export const ArticleSearch = () => {
+
+    const dispatch = useAppDispatch()
+    const isFetching = useAppSelector(state => state.news.isFetching)
 
     const formik = useFormik({
         initialValues: {
@@ -32,5 +34,3 @@ function ArticleSearch() {
         </Paper>
     )
 }
-
-export default ArticleSearch;
