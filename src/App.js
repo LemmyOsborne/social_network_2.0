@@ -1,3 +1,4 @@
+import React from "react"
 import "./App.css"
 import { Profile } from "./components/profile/Profile"
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom"
